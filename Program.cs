@@ -15,6 +15,7 @@ void CalculatorApp()
         //Prompt the user to enter the operation
         Console.Write("Enter the operation (+, -, *, /):");
 
+        //Keyboard input is by default a string, so we need to convert it to a char to work with the switch statement.
         char operation = Convert.ToChar(Console.ReadLine());
         int result = 0;
 
@@ -40,10 +41,15 @@ void CalculatorApp()
         //Output the result to the user
         Console.WriteLine($"Result: {result}");
     }
-    catch (Exception ex)
+    catch (FormatException ex)
     {
         //Handle the case where the input is not valid and show the user the error message content.
-        Console.WriteLine($"Error: {ex.Message}. Please enter a valid operation");
+        Console.WriteLine($"Error: {ex.Message}. Please enter a valid number");
+    }
+    catch (DivideByZeroException ex)
+    {
+        //Handle the case where the user tries to divide by zero and show the user the error message content.
+        Console.WriteLine($"Error: {ex.Message}. Cannot divide by zero.");
     }
     finally
     {
